@@ -2,7 +2,12 @@
 
 {% block content %}
 {% include 'object_list.html' with objects=types class='type' ul_class='types' %}
+
 <br><br>
-{% include 'object_list.html' with objects=cars class='car' ul_class='cars' %}
+<ul id="cars">
+    {% for object in cars %}
+        <li class="{{class}}" data-id="{{ object.id }}">{{ object }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
 

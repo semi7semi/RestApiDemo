@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.forms import UserCreationForm
 # Create your models here.
 class CarType(models.Model):
     name = models.CharField(max_length=100)
@@ -14,3 +14,5 @@ class Car(models.Model):
 
     def __str__(self):
         return f"{self.name} - type {self.car_type}"
+
+
