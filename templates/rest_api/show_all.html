@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% include 'object_list.html' with objects=types class='type' ul_class='types' %}
+
+<ul class="types">
+    {% for object in types %}
+        <li class="type">{{ object }} <input type="checkbox" class="checkboxy" value="{{ object.id }}"> </li>
+    {% endfor %}
+</ul>
 
 <br><br>
 <ul id="cars">

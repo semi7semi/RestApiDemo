@@ -28,10 +28,9 @@ class ShowAllView(View):
         return costam
 
 def get_cars_by_type(request):
-    type_id = request.GET.get('type_id')
-    if type_id is not None:
-        car_type = CarType.objects.get(pk=type_id)
-        cars = Car.objects.filter(car_type=car_type)
+    type_ids = request.GET.getlist('type_ids')
+    if type_ids is not None:
+        cars = Car.objects.filter(car_type__in=type_ids).distinct()
     else:
         cars = Car.objects.all()
     return render(request, "api_cars.html", {'cars':cars, 'form':MyUserCreation()})

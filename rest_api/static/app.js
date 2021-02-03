@@ -1,17 +1,26 @@
 function show_id(event)
 {
-
-    var id = this.dataset.id;
-    var address = '/get_car_by_type?type_id=' + id;
+    var ids = get_checked_chexboxes();
+    var params = new URLSearchParams();
+    ids.forEach(id => params.append("type_ids", id))
+    var address = '/get_car_by_type?'+ params.toString();
     fetch(address)
         .then(response => response.text())
         .then(data => document.getElementById("cars").innerHTML = data);
 
 }
+function get_checked_chexboxes()
+{
+    var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');
+    var ids = [];
+    markedCheckbox.forEach(box => ids.push(box.value));
+    console.log(ids);
+    return ids;
+}
 
 
 
 $( document ).ready(function() {
-    var li_buttons = $('.type');
+    var li_buttons = $('.checkboxy');
     li_buttons.click(show_id);
 });
